@@ -7,5 +7,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: sudo xcode-select --switch /Applications/Xcode_13.3.1.app
+    - run: xcrun --show-sdk-path --sdk macosx
     - run: cmake .
     - run: cmake --build . --verbose
