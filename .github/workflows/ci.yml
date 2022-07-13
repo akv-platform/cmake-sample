@@ -1,0 +1,10 @@
+name: Build
+
+jobs:
+  build:
+    runs-on: macos-12
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: cmake .
+    - run: cmake --build .
