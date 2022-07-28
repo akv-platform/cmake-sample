@@ -10,9 +10,8 @@ jobs:
       
     - run: |
         softwareupdate --list
-        xcodebuild --help
+        ls -la /Applications|grep Xcode
       name: Investigate
-      if: ${{ false }}
       
     - run: |
         softwareupdate --list
