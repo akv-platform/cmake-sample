@@ -30,18 +30,6 @@ jobs:
       name: Fix
       
     - run: |        
-        sudo xcode-select --switch /Applications/Xcode_13.2.1.app
-        xcrun --show-sdk-path --sdk macosx
-        sudo xcode-select --switch /Applications/Xcode_13.3.1.app
-        xcrun --show-sdk-path --sdk macosx
-      name: Test back and forth
-      
-    - run: |        
-        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
-        xcrun --show-sdk-path --sdk macosx
-      name: Test 13.4.1
-      
-    - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.1.app
         xcrun --show-sdk-path --sdk macosx
       name: Test 13.1
@@ -55,6 +43,11 @@ jobs:
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         xcrun --show-sdk-path --sdk macosx
       name: Test 13.3.1
+      
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
+        xcrun --show-sdk-path --sdk macosx
+      name: Test 13.4.1
       
   softwareupdate-install:
     if: ${{ true }}
@@ -64,23 +57,9 @@ jobs:
     - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         softwareupdate --install
-        xcrun --show-sdk-path --sdk macosx
         sudo xcode-select --switch /Applications/Xcode_13.4.1.app
         softwareupdate --install
-        xcrun --show-sdk-path --sdk macosx
       name: Fix
-      
-    - run: |        
-        sudo xcode-select --switch /Applications/Xcode_13.2.1.app
-        xcrun --show-sdk-path --sdk macosx
-        sudo xcode-select --switch /Applications/Xcode_13.3.1.app
-        xcrun --show-sdk-path --sdk macosx
-      name: Test back and forth
-      
-    - run: |        
-        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
-        xcrun --show-sdk-path --sdk macosx
-      name: Test 13.4.1
       
     - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.1.app
@@ -96,7 +75,11 @@ jobs:
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         xcrun --show-sdk-path --sdk macosx
       name: Test 13.3.1
-
+      
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
+        xcrun --show-sdk-path --sdk macosx
+      name: Test 13.4.1
       
   selects:
     if: ${{ true }}
@@ -111,18 +94,6 @@ jobs:
       name: Fix
       
     - run: |        
-        sudo xcode-select --switch /Applications/Xcode_13.2.1.app
-        xcrun --show-sdk-path --sdk macosx
-        sudo xcode-select --switch /Applications/Xcode_13.3.1.app
-        xcrun --show-sdk-path --sdk macosx
-      name: Test back and forth
-      
-    - run: |        
-        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
-        xcrun --show-sdk-path --sdk macosx
-      name: Test 13.4.1
-      
-    - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.1.app
         xcrun --show-sdk-path --sdk macosx
       name: Test 13.1
@@ -136,6 +107,11 @@ jobs:
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         xcrun --show-sdk-path --sdk macosx
       name: Test 13.3.1
+          
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
+        xcrun --show-sdk-path --sdk macosx
+      name: Test 13.4.1
       
   dry-runs:
     if: ${{ true }}
@@ -151,17 +127,39 @@ jobs:
       name: Fix
       
     - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.1.app
+        xcrun --show-sdk-path --sdk macosx
+      name: Test 13.1
+      
+    - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.2.1.app
         xcrun --show-sdk-path --sdk macosx
+      name: Test 13.2.1
+      
+    - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         xcrun --show-sdk-path --sdk macosx
-      name: Test back and forth
-      
+      name: Test 13.3.1
+          
     - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.4.1.app
         xcrun --show-sdk-path --sdk macosx
       name: Test 13.4.1
+  
       
+  time-out:
+    if: ${{ true }}
+    runs-on: macos-12
+
+    steps:
+      
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.3.1.app
+        sleep 5
+        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
+        sleep 5
+      name: Fix
+
     - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.1.app
         xcrun --show-sdk-path --sdk macosx
@@ -176,3 +174,9 @@ jobs:
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         xcrun --show-sdk-path --sdk macosx
       name: Test 13.3.1
+      
+        
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
+        xcrun --show-sdk-path --sdk macosx
+      name: Test 13.4.1
