@@ -76,11 +76,9 @@ jobs:
     - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         softwareupdate --install
-        xcode-select --install
         xcrun --show-sdk-path --sdk macosx
         sudo xcode-select --switch /Applications/Xcode_13.4.1.app
         softwareupdate --install
-        xcode-select --install
         xcrun --show-sdk-path --sdk macosx
       name: Fix
       
