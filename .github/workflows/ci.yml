@@ -6,5 +6,11 @@ jobs:
 
     steps:
     - run: ls -la /Applications
+    - run: sudo xcode-select --switch /Applications/Xcode_13.1.app
+    - run: xcrun --show-sdk-path --sdk macosx
+    - run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app
+    - run: xcrun --show-sdk-path --sdk macosx
     - run: sudo xcode-select --switch /Applications/Xcode_13.3.1.app
+    - run: xcrun --show-sdk-path --sdk macosx
+    - run: sudo xcode-select --switch /Applications/Xcode_13.4.1.app
     - run: xcrun --show-sdk-path --sdk macosx
