@@ -30,8 +30,6 @@ jobs:
         xcrun --show-sdk-path --sdk macosx
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         xcrun --show-sdk-path --sdk macosx
-        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
-        xcrun --show-sdk-path --sdk macosx
       name: Test back and forth
       
     - run: |        
