@@ -9,4 +9,15 @@ jobs:
     - run: |
         softwareupdate --list
         xcodebuild --help
+      name: Investigate
+      
+    - run: |
+        softwareupdate --list
         xcrun --show-sdk-path --sdk macosx
+      name: Repro
+      
+    - run: |        
+        sudo rm -rf /Library/Developer/CommandLineTools
+        xcode-select --install
+        xcrun --show-sdk-path --sdk macosx
+      name: Fix
