@@ -6,6 +6,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: cat /usr/local/Cellar/cmake/3.23.2/share/cmake/Modules/Platform/Darwin-Initialize.cmake
     - run: sudo xcode-select --switch /Applications/Xcode_13.3.1.app
     - run: xcrun --show-sdk-path --sdk macosx
     - run: cmake .
