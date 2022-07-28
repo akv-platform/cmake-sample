@@ -106,6 +106,8 @@ jobs:
     - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         sudo xcode-select --switch /Applications/Xcode_13.4.1.app
+        sudo xcode-select --switch /Applications/Xcode_13.3.1.app
+        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
       name: Fix
       
     - run: |        
