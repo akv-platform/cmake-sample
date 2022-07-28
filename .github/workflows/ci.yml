@@ -1,24 +1,23 @@
 name: Build
 on: [push]
 jobs:
-  rm-commandlinetools:
-    if: ${{ false }}
+  repro:
     runs-on: macos-12
-
     steps:
-    - run: sudo xcode-select --switch /Applications/Xcode_13.3.1.app
-      name: select 13.3.1
-      
     - run: |
         softwareupdate --list
         ls -la /Applications|grep Xcode
-      name: Investigate
-      
+      name: Investigate  
     - run: |
         softwareupdate --list
         xcrun --show-sdk-path --sdk macosx
       name: Repro
       
+  rm-commandlinetools:
+    if: ${{ true }}
+    runs-on: macos-12
+
+    steps:
     - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         sudo rm -rf /Library/Developer/CommandLineTools
@@ -58,23 +57,10 @@ jobs:
       name: Test 13.3.1
       
   softwareupdate-install:
-    if: ${{ false }}
+    if: ${{ true }}
     runs-on: macos-12
 
     steps:
-    - run: sudo xcode-select --switch /Applications/Xcode_13.3.1.app
-      name: select 13.3.1
-      
-    - run: |
-        softwareupdate --list
-        ls -la /Applications|grep Xcode
-      name: Investigate
-      
-    - run: |
-        softwareupdate --list
-        xcrun --show-sdk-path --sdk macosx
-      name: Repro
-      
     - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
         softwareupdate --install
@@ -117,21 +103,48 @@ jobs:
     runs-on: macos-12
 
     steps:
-    - run: sudo xcode-select --switch /Applications/Xcode_13.3.1.app
-      name: select 13.3.1
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.3.1.app
+        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
+      name: Fix
       
-    - run: |
-        softwareupdate --list
-        ls -la /Applications|grep Xcode
-      name: Investigate
-      
-    - run: |
-        softwareupdate --list
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.2.1.app
         xcrun --show-sdk-path --sdk macosx
-      name: Repro
+        sudo xcode-select --switch /Applications/Xcode_13.3.1.app
+        xcrun --show-sdk-path --sdk macosx
+      name: Test back and forth
+      
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
+        xcrun --show-sdk-path --sdk macosx
+      name: Test 13.4.1
+      
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.1.app
+        xcrun --show-sdk-path --sdk macosx
+      name: Test 13.1
+      
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.2.1.app
+        xcrun --show-sdk-path --sdk macosx
+      name: Test 13.2.1
       
     - run: |        
         sudo xcode-select --switch /Applications/Xcode_13.3.1.app
+        xcrun --show-sdk-path --sdk macosx
+      name: Test 13.3.1
+      
+  dry-runs:
+    if: ${{ true }}
+    runs-on: macos-12
+
+    steps:
+      
+    - run: |        
+        sudo xcode-select --switch /Applications/Xcode_13.3.1.app
+        sudo xcode-select --switch /Applications/Xcode_13.3.1.app
+        sudo xcode-select --switch /Applications/Xcode_13.4.1.app
         sudo xcode-select --switch /Applications/Xcode_13.4.1.app
       name: Fix
       
